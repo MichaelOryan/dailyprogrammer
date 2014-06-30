@@ -1,0 +1,53 @@
+/*
+
+http://www.reddit.com/r/dailyprogrammer/comments/299hvt/6272014_challenge_168_easy_string_index/
+
+Basic overview: Return nth word in the text
+"...You...!!!@!3124131212 Hello have this is a --- string Solved !!...? to test @\n\n\n#!#@#@%$**#$@ Congratz this!!!!!!!!!!!!!!!!one ---Problem\n\n"
+
+*/
+
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+vector<string> buildVector(string str, string range)
+{
+    vector<string> v_str = {""};
+    string tmp_str = "";
+
+    for(char &letter : str){
+        if(range.find(letter) != string::npos){
+            tmp_str += letter;
+        }
+        else{
+            if(tmp_str != ""){
+                v_str.push_back(tmp_str);
+                tmp_str = "";
+            }
+        }
+    }
+
+    return v_str;
+}
+
+int main()
+{
+    string someString = "...You...!!!@!3124131212 Hello have this is a --- string Solved !!...? to test @\n\n\n#!#@#@%$**#$@ Congratz this!!!!!!!!!!!!!!!!one ---Problem\n\n";
+    string range = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    vector<int> indexes = {12, -1, 1, -100, 4, 1000, 9, -1000, 16, 13, 17};
+    bool firstWord = true;
+
+    vector<string> v_str = buildVector(someString, range);
+
+    for(int &i : indexes){
+        if(i > 0 && (unsigned int)i < v_str.size()){
+            cout << (firstWord ? "" : " ") << v_str[i];
+            firstWord = false;
+        }
+    }
+
+    return 0;
+}
+
