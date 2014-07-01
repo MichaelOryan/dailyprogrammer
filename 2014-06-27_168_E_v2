@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <functional>
+
+using namespace std;
+
+int main()
+{
+    string str = "...You...!!!@!3124131212 Hello have this is a --- string Solved !!...? to test @\n\n\n#!#@#@%$**#$@ Congratz this!!!!!!!!!!!!!!!!one ---Problem\n\n";
+    string range = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    vector<int> indexes = {12, -1, 1, -100, 4, 1000, 9, -1000, 16, 13, 17};
+    for(int &i : indexes){
+        bool word = false;
+        int count = 0;
+        for(char &letter : str){
+            count += range.find(letter) == string::npos ?
+            [&word, &count, &i](){if(word && !(word = false) && count == i) cout << " "; return 0;}() :
+            (!word && (word = true) ? 1 : 0);
+            if(count == i && word == true) cout << letter;
+        }
+    }
+    return 0;
+}
