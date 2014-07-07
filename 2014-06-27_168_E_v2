@@ -7,6 +7,8 @@ Basic overview: Return nth word in the text.
 
 Attempting with short code with Lambdas.
 
+Note: Don't finish up with something like this again. It looks horrible and I would hate to try and maintain it. :(
+
 */
 
 #include <iostream>
